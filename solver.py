@@ -43,8 +43,13 @@ typy_radarow = {
     "B": 30,
 }
 
-# budzet ilościowy radarów
-N = 3
+# koszt każdego typu radaru
+koszt_radarow = {
+    "A": 100,
+    "B": 200
+}
+# budzet 
+B = 500
 
 # zmienne dot rozmiarów
 I = len(lokalizacje)    # liczba lokalizacji
@@ -112,9 +117,9 @@ model.setObjective(
 
 # OGRANICZENIA
 
-# budzet max N radarów
+# budzet: suma kosztow radarow nie moze przekroczyc B
 model.addConstr(
-    gp.quicksum(x[i, k] for i in range(I) for k in K) <= N,
+    gp.quicksum(koszt_radarow[k] * x[i, k] for i in range(I) for k in K) <= B,
     name="budzet"
 )
 
