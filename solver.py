@@ -174,3 +174,18 @@ if model.Status == GRB.OPTIMAL:
 
 else:
     print(f"status: {model.Status} — brak rozwiązania")
+
+
+
+
+
+## wyniki dla OBRAZKA
+wyniki = {
+    "lokalizacje": lokalizacje,
+    "cele": cele,
+    "wagi": wagi,
+    "typy_radarow": typy_radarow,
+    "postawione": [(i, k) for i in range(I) for k in K if x[i, k].X > 0.5],
+    "pokryte": [j for j in range(J) if y[j].X > 0.5],
+    "obj": model.ObjVal,
+}
