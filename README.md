@@ -13,3 +13,10 @@ postawić w predefiniowanych lokalizacjach. Każdy typ radaru ma inny zasięg.
 co najmniej jednego radaru.
 
 **Klasa problemu:** NP-trudny (Weighted Maximum Coverage Problem)
+
+
+### Uruchomienie solver2.py (GUI do zmiany parametrów problemu)
+
+pip install streamlit
+
+python3 -m streamlit run solver2.py

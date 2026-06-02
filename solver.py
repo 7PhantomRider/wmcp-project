@@ -4,9 +4,6 @@ import gurobipy as gp
 from gurobipy import GRB
 import numpy as np
 
-# WMCP — Weighted Maximum Coverage Problem
-# Rozmieszczamy radary, żeby pokryć jak najważniejsze cele
-
 
 # DANE
 
@@ -21,7 +18,7 @@ lokalizacje = np.array([
     [30, 70],
     [60, 80],
 ])
-# i: 0, 1, 2, 3, 4
+# i: 0 - 4
 
 # pokrywane cele. i od 0 do 6 (7 celów)
 cele = np.array([
@@ -92,7 +89,7 @@ print()
 model = gp.Model("WMCP")
 
 # (opcjonalny filtr outputu tu gdzieś znalazłem zeby czystszy tekst był)
-# model.setParam("OutputFlag", 0)
+model.setParam("OutputFlag", 0)
 
 
 # ZMIENNE DECYZYJNE
