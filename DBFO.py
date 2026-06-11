@@ -61,8 +61,9 @@ def DBFO():
         bakterie_dyskretne[b] = dekoduj_na_stany(bakterie_ciagle[b])
         zdrowie_bakterii[b] = ocen_bakterie(bakterie_dyskretne[b])
 
-    najlepsza_pozycja_globalnie = None
-    najlepszy_koszt_globalnie = float('inf')
+    bakterie_dyskretne[0] = dekoduj_na_stany(bakterie_ciagle[0])
+    najlepsza_pozycja_globalnie = bakterie_dyskretne[0].copy()
+    najlepszy_koszt_globalnie = ocen_bakterie(bakterie_dyskretne[0])
 
 
     for l in range(liczba_krokow_eliminacji):
@@ -129,6 +130,9 @@ def DBFO():
             for j in range(J):
                 if a[(i, j, k)] == 1:
                     pokryte.add(j)
+
+    if najlepsza_pozycja_globalnie is None:
+        return {"algorytm": "Dyskretne BFO", "obj": 0, "czas": 0, "postawione": [], "pokryte": []}
 
     return {
         "algorytm": "Dyskretne BFO",

@@ -22,12 +22,11 @@ def genetyk():
                 calkowity_koszt += koszt_radarow[typ_radaru]
                 zdobyte_cele.update(mapa_pokrycia[(i, typ_radaru)])
         
-        # Obliczamy zysk z celów
-        zysk = sum(wagi[j] for j in zdobyte_cele)
-        # Łagodna kara (zamiast kary śmierci) za przekroczenie budżetu
-        kara = max(0, calkowity_koszt - B) * 5 
+        if calkowity_koszt > B:
+            return -1, calkowity_koszt # kara
         
-        return zysk - kara, calkowity_koszt
+        zysk = sum(wagi[j] for j in zdobyte_cele)
+        return zysk, calkowity_koszt
 
     # Krzyzowanie dwoch rodzicow
     def krzyzowanie(rodzic1, rodzic2):

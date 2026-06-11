@@ -16,8 +16,8 @@ else:
     np.random.seed(42)  #seed
     random.seed(42)
     
-    liczba_lokalizacji = 250
-    liczba_celow = 600
+    liczba_lokalizacji = 70
+    liczba_celow = 50
     rozmiar_mapy = 1000
     
     lokalizacje = np.random.uniform(0, rozmiar_mapy, (liczba_lokalizacji, 2))
@@ -51,3 +51,8 @@ for i in range(I):
                 mapa_pokrycia[(i, k)].add(j)
             else:
                 a[(i, j, k)] = 0
+
+mapa_pokrycia = {}
+for i in range(I):
+    for k in K:
+        mapa_pokrycia[(i, k)] = [j for j in range(J) if a[(i, j, k)] == 1]
