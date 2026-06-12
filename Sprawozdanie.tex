@@ -1,0 +1,63 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage[margin=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{titlesec}
+
+\titlespacing{\section}{0pt}{10pt}{5pt}
+\titlespacing{\subsection}{0pt}{8pt}{4pt}
+
+\title{\vspace{-1.5cm}\textbf{Sprawozdanie \\
+Weighted Maximum Coverage Problem}}
+\author{Seweryn Nekrasz, Krystian Piszczek}
+
+\begin{document}
+\maketitle
+\vspace{-1cm}
+
+\section{Wstęp}
+Celem projektu jest rozwiązanie wariantu problemu maksymalnego pokrycia (ang. \textit{Maximum Coverage Problem}) z uwzględnieniem wag celów oraz ograniczeń budżetowych. Zbadano i porównano trzy metody optymalizacji: solver dokładny Gurobi, Algorytm Genetyczny (AG) oraz Dyskretny Algorytm Optymalizacji Żerowania Bakterii (DBFO). 
+
+\section{Sformułowanie problemu}
+Zadanie polega na maksymalizacji sumy wag pokrytych celów, przy czym radary różnych typów mogą być rozmieszczane tylko w dozwolonych lokalizacjach, a ich sumaryczny koszt nie może przekroczyć narzuconego budżetu $B$. Przestrzeń decyzyjna ma charakter dyskretny (wybór typu radaru w danej lokalizacji).
+
+\section{Opis implementacji}
+\begin{itemize}
+    \item \textbf{Gurobi:} Wykorzystany jako metoda referencyjna do wyznaczania optimum globalnego (Mixed-Integer Linear Programming).
+    \item \textbf{Algorytm Genetyczny (AG):} Reprezentacja wektora dyskretnego, turniejowa selekcja, krzyżowanie jednopunktowe oraz mutacja losowa.
+    \item \textbf{Dyskretne BFO (DBFO):} Modyfikacja algorytmu BFO, w której ciągła przestrzeń poszukiwań mapowana jest na k stanów dyskretnych (reprezentujących brak radaru lub wybór jednego z dostępnych typów) z wykorzystaniem funkcji sigmoidalnej i podziału przedziału prawdopodobieństwa na równe progi decyzyjne.
+\end{itemize}
+
+\section{Wyniki eksperymentów}
+Badania przeprowadzono dla instancji o różnym rozmiarze (liczbie lokalizacji i celów). Tabela \ref{tab:wyniki} prezentuje uśrednione wartości zysku oraz czasu wykonania dla $N$ uruchomień heurystyk.
+
+\begin{table}[H]
+\centering
+\caption{Porównanie zysku i czasu obliczeń algorytmów}
+\label{tab:wyniki}
+\begin{tabularx}{\textwidth}{l *{6}{X}}
+\toprule
+\textbf{Rozmiar} & \multicolumn{2}{c}{\textbf{Gurobi}} & \multicolumn{2}{c}{\textbf{AG}} & \multicolumn{2}{c}{\textbf{DBFO}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5} \cmidrule(lr){6-7}
+(Lok/Cele) & Zysk & Czas [s] & Śr. Zysk & Czas [s] & Śr. Zysk & Czas [s] \\
+\midrule
+Mały (5/7)  & 100 & 0.05 & [Brak] & [Brak] & [Brak] & [Brak] \\
+Średni      & [Brak] & [Brak] & [Brak] & [Brak] & [Brak] & [Brak] \\
+Duży        & [Brak] & [Brak] & [Brak] & [Brak] & [Brak] & [Brak] \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Analiza statystyczna}
+
+
+\section{Wnioski}
+
+
+\end{document}
