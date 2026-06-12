@@ -24,10 +24,12 @@ def DBFO():
         prawdopodobienstwa = funkcja_sigmoidalna(wektor_ciagly)
         stany = np.zeros(wymiar, dtype=int)
         
-        stany[prawdopodobienstwa >= 0.25] = 1  
-        stany[prawdopodobienstwa >= 0.50] = 2  
-        stany[prawdopodobienstwa >= 0.75] = 3 
-        return stany
+        liczba_stanow = len(K) + 1 
+        krok = 1.0 / liczba_stanow
+        
+        # Dynamiczne nakładanie progów dla dowolnej liczby typów radarów
+        for s in range(1, liczba_stanow):
+            stany[prawdopodobienstwa >= s * krok] = s
 
     def ocen_bakterie(stany_lokalizacji):
         koszt_calkowity = 0
